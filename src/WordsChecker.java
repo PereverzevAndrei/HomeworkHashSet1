@@ -1,19 +1,13 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class WordsChecker {
-    String value;
+    Set<String> value;
 
     public WordsChecker(String value) {
-        this.value = value;
+        this.value = new HashSet<>(List.of(value.split("\\P{IsAlphabetic}+")));
     }
 
     public boolean hasWord(String word) {
-        Map<String, Integer> map = new HashMap<>();
-        String[] words = value.split("\\P{IsAlphabetic}+");
-        for (String wordSet : words) {
-            map.put(wordSet, 1);
-        }
-        return map.containsKey(word);
+        return value.contains(word);
     }
 }
